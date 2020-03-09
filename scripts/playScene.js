@@ -23,7 +23,7 @@ export default class PlayScene extends Phaser.Scene {
   create() {
     
     gameState.cursors = this.input.keyboard.createCursorKeys();
-    this.timer();
+   // this.timer();
     
     let playerOptions = {
       scene: this,
@@ -40,10 +40,10 @@ export default class PlayScene extends Phaser.Scene {
     
     this.generateLevel();
     
-    gameState.time = this.add.text(40, 40, time, {
-      color: '#000000',
-      fontSize: 32
-    });
+    //gameState.time = this.add.text(40, 40, time, {
+   //   color: '#000000',
+  //    fontSize: 32
+//    });
     
     this.input.on('pointerdown', function() {
       gameState.player.jump(); //jump on click
@@ -63,7 +63,7 @@ export default class PlayScene extends Phaser.Scene {
       this.scene.restart();
     }
   
-    gameState.time.setText(time); //update timer
+    //gameState.time.setText(time); //update timer
   }
   
   timer() {
