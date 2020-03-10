@@ -3,7 +3,7 @@ let time = 0;
 
 import Player from './player.js';
 import {game} from './main.js';
-import {skin} from './skins.js';
+import {SkinSelect} from './skins.js';
 
 export default class PlayScene extends Phaser.Scene {
   constructor () {
@@ -16,6 +16,10 @@ export default class PlayScene extends Phaser.Scene {
   }
   
   preload() {
+    let skin = localStorage.getItem('skin');
+    if (skin == 'undefined') {
+      skin = 'assets.player.png';
+    }
     this.load.image('player', skin);
     this.load.image('platform', 'assets/platform.png');
     this.load.image('platform2', 'assets/platform2.png');
