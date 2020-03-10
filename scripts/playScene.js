@@ -13,12 +13,13 @@ export default class PlayScene extends Phaser.Scene {
   init(config) {
     this.levelData = config.level;
     this.level = config.levelNum;
+    console.debug(localStorage.getItem('skin'));
   }
   
   preload() {
     let skin = localStorage.getItem('skin');
-    if (skin == 'undefined') {
-      skin = 'assets.player.png';
+    if (skin == 'undefined' || skin === null) {
+      skin = 'assets/player.png';
     }
     this.load.image('player', skin);
     this.load.image('platform', 'assets/platform.png');
