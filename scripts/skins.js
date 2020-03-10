@@ -23,7 +23,7 @@ class SkinSelect extends Phaser.Scene {
       skin = 'assets/player.png';
     });
     
-    if (Number(localStorage.getItem('level')) > 3) {
+    if (Number(localStorage.getItem('level')) > 2) {
       let skin2 = this.add.text(350, 300, 'Tomato', font);
       skin2.setInteractive();
       skin2.on('pointerup', function() {
