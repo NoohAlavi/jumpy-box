@@ -1,8 +1,7 @@
-let skin = 'assets/player.png';
-
-class SkinSelect extends Phaser.Scene {
+export class SkinSelect extends Phaser.Scene {
   constructor() {
     super('SkinSelect');
+    this.skin = localStorage.getItem('skin') || 'assets/player.png';
   }
   create() {
     
@@ -20,25 +19,26 @@ class SkinSelect extends Phaser.Scene {
     let skin1 = this.add.text(350, 150, 'Normal', font);
     skin1.setInteractive();
     skin1.on('pointerup', function() {
-      skin = 'assets/player.png';
+      this.skin = 'assets/player.png';
+      localStorage.setItem('skin', this.skin);
     });
     
     if (Number(localStorage.getItem('level')) > 2) {
       let skin2 = this.add.text(350, 300, 'Tomato', font);
       skin2.setInteractive();
       skin2.on('pointerup', function() {
-        skin = 'assets/tomatoSkin.png';
+        this.skin = 'assets/tomatoSkin.png';
+        localStorage.setItem('skin', this.skin);
       });
     }
     
-    if (Number(localStorage.getItem('level') > 6)) {
+    if (Number(localStorage.getItem('level') > 5)) {
       let skin3 = this.add.text(350, 450, 'Zombie', font);
       skin3.setInteractive();
       skin3.on('pointerup', function() {
-        skin = 'assets/zombieSkin.png';
+        this.skin = 'assets/zombieSkin.png'
+        localStorage.setItem('skin', this.skin);
       });
     }
   }
 }
-
-export {skin, SkinSelect};
