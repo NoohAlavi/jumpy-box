@@ -52,7 +52,7 @@ export default class MainMenu extends Phaser.Scene {
     this.resetButton = this.add.text(330, 400, 'CLEAR DATA', font);
     this.resetButton.setInteractive();
     this.resetButton.on('pointerup', function() {
-      if (window.confirm('Are you sure you want to clear all game data?')) {
+      if (window.confirm('Are you sure you want to clear all your game data? This will make your levels and skins reset and cannot be undone.')) {
         localStorage.clear();
       }
     }, null, this);
