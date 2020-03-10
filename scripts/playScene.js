@@ -2,6 +2,7 @@ let gameState = {};
 let time = 0;
 
 import Player from './player.js';
+import {game} from './main.js';
 
 export default class PlayScene extends Phaser.Scene {
   constructor () {
@@ -18,12 +19,13 @@ export default class PlayScene extends Phaser.Scene {
     this.load.image('platform2', 'assets/platform2.png');
     this.load.image('portal', 'assets/portal.png');
     this.load.image('spike', 'assets/spike.png');
+    this.load.image('trampoline', 'assets/trampoline.png');
   }
   
   create() {
     
     gameState.cursors = this.input.keyboard.createCursorKeys();
-   // this.timer();
+    this.timer();
     
     let playerOptions = {
       scene: this,
@@ -41,9 +43,9 @@ export default class PlayScene extends Phaser.Scene {
     this.generateLevel();
     
     //gameState.time = this.add.text(40, 40, time, {
-   //   color: '#000000',
-  //    fontSize: 32
-//    });
+    //  color: '#000000',
+    //  fontSize: 32
+    //});
     
     this.input.on('pointerdown', function() {
       gameState.player.jump(); //jump on click
@@ -56,6 +58,11 @@ export default class PlayScene extends Phaser.Scene {
       if (platforms[i].body.x < -16 && platforms[i].x < -16) {
         platforms[i].destroy();
       }
+    }
+    
+    if (!(gameState.txt === null || gameState.txt === undefined)) {
+      gameState.txt.x = gameState.txtSprite.x;
+      gameState.txt.y = gameState.txtSprite.y;
     }
   
     if (gameState.player.update() == 'isDead') { //check if player fell off screen
@@ -77,26 +84,32 @@ export default class PlayScene extends Phaser.Scene {
     gameState.platforms = this.physics.add.group();
     gameState.spikes = this.physics.add.group();
     gameState.portals = this.physics.add.group();
+    gameState.trampolines = this.physics.add.group();
     
     let speed = 160;
     
     for (let y = 0; y < this.levelData.length; y++) {
       for (let x = 0; x < this.levelData[y].length; x++) {
-        switch(this.levelData[y][x]) {
-          case 0:
-            break;
-          case 1:
-            gameState.platforms.create(x * 32, y * 32, 'platform');
-            break;
-          case 2:
-            gameState.spikes.create(x * 32, y * 32, 'spike');
-            break;
-          case 3:
-            gameState.portals.create(x*32, y*32, 'portal');
-            break;
-          default:
-            console.error("Invalid level data!");
-            debugger;
+        if (typeof(this.levelData[y][x]) == 'number') {
+          switch(this.levelData[y][x]) {
+            case 0:
+              break;
+            case 1:
+              gameState.platforms.create(x * 32, y * 32, 'platform');
+              break;
+            case 2:
+              gameState.spikes.create(x * 32, y * 32, 'spike');
+              break;
+            case 3:
+              gameState.portals.create(x*32, y*32, 'portal');
+              break;
+            case 4:
+              gameState.trampolines.create(x*32, y*32, 'trampoline');
+              break;
+            default:
+              console.error("Invalid level data!");
+              debugger;
+          }
         }
       }
     }
@@ -126,6 +139,16 @@ export default class PlayScene extends Phaser.Scene {
       portals[i].setDebugBodyColor(0x00FFFF);
     }
     
+    let trampolines = gameState.trampolines.children.entries;
+    for (let i = 0; i < trampolines.length; i++) {
+      trampolines[i].body.allowGravity = false;
+      trampolines[i].body.immovable = true;
+      trampolines[i].body.setVelocityX(-speed);
+      trampolines[i].setDebugBodyColor(0xFF0000);
+      trampolines[i].setSize(32, 10);
+      trampolines[i].setOffset(0, 22);
+    }
+    
     this.physics.add.collider(gameState.player, gameState.platforms, null, null, this);
     
     this.physics.add.overlap(gameState.player, gameState.portals, function() {
@@ -139,6 +162,13 @@ export default class PlayScene extends Phaser.Scene {
       gameState.player.jumpForce = 0;
       gameState.player.tint = 0xFF0000;
       this.scene.systems.time.delayedCall(100, function() {
+        this.scene.restart();
+      }, [], this);
+    }, null, this);
+    
+    this.physics.add.overlap(gameState.player,gameState.trampolines,function(player,trampoline) {
+      player.setGravity(0, -700);
+      this.scene.systems.time.delayedCall(3000, function() {
         this.scene.restart();
       }, [], this);
     }, null, this);
