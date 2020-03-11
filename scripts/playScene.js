@@ -181,6 +181,7 @@ export default class PlayScene extends Phaser.Scene {
     
     this.physics.add.overlap(gameState.player,gameState.trampolines,function(player,trampoline) {
       player.setGravity(0, -700);
+      player.flipY = true;
       this.scene.systems.time.delayedCall(3000, function() {
         this.scene.restart();
       }, [], this);
