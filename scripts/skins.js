@@ -10,6 +10,8 @@ export class SkinSelect extends Phaser.Scene {
       color: '#000000'
     };
     
+    this.add.text(300, 20, '  Switching skins \nMay require refresh', font);
+    
     let back = this.add.text(50, 50, '<---', font);
     back.setInteractive();
     back.on('pointerup', function() {
