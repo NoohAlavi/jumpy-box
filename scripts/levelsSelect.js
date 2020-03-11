@@ -44,7 +44,7 @@ export default class LevelSelect extends Phaser.Scene {
     
     let savedLevel = Number(localStorage.getItem('level'));
     
-    if (savedLevel == NaN || savedLevel < 1) {
+    if (savedLevel === NaN || savedLevel === 0) {
       this.level1 = this.add.text(100, 80, '[1]', buttonFont);
       this.level1.setInteractive();
       this.level1.on('pointerup', function() {
@@ -52,8 +52,22 @@ export default class LevelSelect extends Phaser.Scene {
       }, null, this);
     }
     
-    else if (savedLevel < 2) {
-        this.level1 = this.add.text(100, 80, '[1]', buttonFont);
+    else if (savedLevel > 0) {
+        /*this.level1 = this.add.text(100, 80, '[1]', buttonFont);
+        this.level1.setInteractive();
+        this.level1.on('pointerup', function() {
+          level = 1;
+        }, null, this);*/
+        
+        this.level2 = this.add.text(100, 128, '[2]', buttonFont);
+        this.level2.setInteractive();
+        this.level2.on('pointerup', function() {
+          level = 2;
+        }, null, this);
+    }
+    
+    else if (savedLevel > 1) {
+        /*this.level1 = this.add.text(100, 80, '[1]', buttonFont);
         this.level1.setInteractive();
         this.level1.on('pointerup', function() {
           level = 1;
@@ -63,11 +77,17 @@ export default class LevelSelect extends Phaser.Scene {
         this.level2.setInteractive();
         this.level2.on('pointerup', function() {
           level = 2;
+        }, null, this);*/
+      
+        this.level3 = this.add.text(100, 176, '[3]', buttonFont);
+        this.level3.setInteractive();
+        this.level3.on('pointerup', function() {
+          level = 3;
         }, null, this);
     }
     
-    else if (savedLevel < 3) {
-        this.level1 = this.add.text(100, 80, '[1]', buttonFont);
+    else if (savedLevel > 2) {
+        /*this.level1 = this.add.text(100, 80, '[1]', buttonFont);
         this.level1.setInteractive();
         this.level1.on('pointerup', function() {
           level = 1;
@@ -84,10 +104,16 @@ export default class LevelSelect extends Phaser.Scene {
         this.level3.on('pointerup', function() {
           level = 3;
         }, null, this);
+      */
+        this.level4 = this.add.text(100, 224, '[4]', buttonFont);
+        this.level4.setInteractive();
+        this.level4.on('pointerup', function() {
+          level = 4;
+        }, null, this);
     }
     
-    else if (savedLevel < 4) {
-        this.level1 = this.add.text(100, 80, '[1]', buttonFont);
+    else if (savedLevel > 3) {
+        /*this.level1 = this.add.text(100, 80, '[1]', buttonFont);
         this.level1.setInteractive();
         this.level1.on('pointerup', function() {
           level = 1;
@@ -109,11 +135,17 @@ export default class LevelSelect extends Phaser.Scene {
         this.level4.setInteractive();
         this.level4.on('pointerup', function() {
           level = 4;
+        }, null, this);*/
+        
+        this.level5 = this.add.text(100, 272, '[5]', buttonFont);
+        this.level5.setInteractive();
+        this.level5.on('pointerup', function() {
+          level = 5;
         }, null, this);
     }
     
-    else if (savedLevel < 5) {
-        this.level1 = this.add.text(100, 80, '[1]', buttonFont);
+    else if (savedLevel > 4) {
+        /*this.level1 = this.add.text(100, 80, '[1]', buttonFont);
         this.level1.setInteractive();
         this.level1.on('pointerup', function() {
           level = 1;
@@ -141,11 +173,17 @@ export default class LevelSelect extends Phaser.Scene {
         this.level5.setInteractive();
         this.level5.on('pointerup', function() {
           level = 5;
+        }, null, this);*/
+        
+        this.level6 = this.add.text(100, 320, '[6]', buttonFont);
+        this.level6.setInteractive();
+        this.level6.on('pointerup', function() {
+          level = 6;
         }, null, this);
     }
     
-    else if (savedLevel < 6) {
-        this.level1 = this.add.text(100, 80, '[1]', buttonFont);
+    else if (savedLevel > 5) {
+        /*this.level1 = this.add.text(100, 80, '[1]', buttonFont);
         this.level1.setInteractive();
         this.level1.on('pointerup', function() {
           level = 1;
@@ -179,45 +217,7 @@ export default class LevelSelect extends Phaser.Scene {
         this.level6.setInteractive();
         this.level6.on('pointerup', function() {
           level = 6;
-        }, null, this);
-    }
-    
-    else if (savedLevel < 7) {
-        this.level1 = this.add.text(100, 80, '[1]', buttonFont);
-        this.level1.setInteractive();
-        this.level1.on('pointerup', function() {
-          level = 1;
-        }, null, this);
-        
-        this.level2 = this.add.text(100, 128, '[2]', buttonFont);
-        this.level2.setInteractive();
-        this.level2.on('pointerup', function() {
-          level = 2;
-        }, null, this);
-      
-        this.level3 = this.add.text(100, 176, '[3]', buttonFont);
-        this.level3.setInteractive();
-        this.level3.on('pointerup', function() {
-          level = 3;
-        }, null, this);
-        
-        this.level4 = this.add.text(100, 224, '[4]', buttonFont);
-        this.level4.setInteractive();
-        this.level4.on('pointerup', function() {
-          level = 4;
-        }, null, this);
-        
-        this.level5 = this.add.text(100, 272, '[5]', buttonFont);
-        this.level5.setInteractive();
-        this.level5.on('pointerup', function() {
-          level = 5;
-        }, null, this);
-        
-        this.level6 = this.add.text(100, 320, '[6]', buttonFont);
-        this.level6.setInteractive();
-        this.level6.on('pointerup', function() {
-          level = 6;
-        }, null, this);
+        }, null, this);*/
         
         this.level7 = this.add.text(100, 368, '[7]', buttonFont);
         this.level7.setInteractive();
