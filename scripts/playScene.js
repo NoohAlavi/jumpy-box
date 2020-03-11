@@ -89,6 +89,7 @@ export default class PlayScene extends Phaser.Scene {
   
   generateLevel () {
     gameState.platforms = this.physics.add.group();
+    gameState.fakePlatforms = this.physics.add.group();
     gameState.spikes = this.physics.add.group();
     gameState.portals = this.physics.add.group();
     gameState.trampolines = this.physics.add.group();
@@ -113,6 +114,9 @@ export default class PlayScene extends Phaser.Scene {
             case 4:
               gameState.trampolines.create(x*32, y*32, 'trampoline');
               break;
+            case 5:
+              gameState.fakePlatforms.create(x * 32, y * 32, 'platform');
+              break;
             default:
               console.error("Invalid level data!");
               debugger;
@@ -127,6 +131,14 @@ export default class PlayScene extends Phaser.Scene {
       platforms[i].body.immovable = true;
       platforms[i].body.setVelocityX(-speed);
       platforms[i].setDebugBodyColor(0x0000FF);
+    }
+    
+    let fPlatforms = gameState.fakePlatforms.children.entries;
+    for (let i = 0; i < fPlatforms.length; i++) {
+      fPlatforms[i].body.allowGravity = false;
+      fPlatforms[i].body.immovable = true;
+      fPlatforms[i].body.setVelocityX(-speed);
+      fPlatforms[i].setDebugBodyColor(0xFFFFFF);
     }
     
     let spikes = gameState.spikes.children.entries;
@@ -180,10 +192,15 @@ export default class PlayScene extends Phaser.Scene {
     }, null, this);
     
     this.physics.add.overlap(gameState.player,gameState.trampolines,function(player,trampoline) {
-      player.setGravity(0, -700);
       player.flipY = true;
-      this.scene.systems.time.delayedCall(3000, function() {
-        this.scene.restart();
+      player.setGravity(0, -700);
+      this.scene.systems.time.delayedCall(1500, function() {
+        console.debug('called');
+        player.setGravity(0, 0);
+        player.flipY = false;
+        if (this.level == 7 || this.level == 8) {
+          this.scene.restart();
+        }
       }, [], this);
     }, null, this);
   }
