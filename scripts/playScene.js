@@ -173,7 +173,9 @@ export default class PlayScene extends Phaser.Scene {
     this.physics.add.overlap(gameState.player, gameState.portals, function() {
       this.scene.systems.time.delayedCall(50, function() {
         time = 0;
-        localStorage.setItem('level', this.level);
+        if (this.level > localStorage.getItem('level')) {
+          localStorage.setItem('level', this.level);
+        }
         if (this.level == 3) {
           alert('New skin unlocked! Check in skins menu to try it!');
         } else if (this.level == 6) {
