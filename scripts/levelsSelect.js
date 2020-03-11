@@ -44,7 +44,7 @@ export default class LevelSelect extends Phaser.Scene {
     
     let savedLevel = Number(localStorage.getItem('level'));
     
-    if (savedLevel === NaN || savedLevel === 0) {
+    if (savedLevel === NaN || savedLevel === 0 || savedLevel > 0) {
       this.level1 = this.add.text(100, 80, '[1]', buttonFont);
       this.level1.setInteractive();
       this.level1.on('pointerup', function() {
