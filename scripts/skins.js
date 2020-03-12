@@ -51,5 +51,14 @@ export class SkinSelect extends Phaser.Scene {
         localStorage.setItem('skin', this.skin);
       });
     }
+    
+    if (Number(localStorage.getItem('level') > 10)) {
+      let skin4 = this.add.text(350, 550, 'Robot', font);
+      skin4.setInteractive();
+      skin4.on('pointerup', function() {
+        this.skin = 'assets/robotSkin.png';
+        localStorage.setItem('skin', this.skin);
+      });
+    }
   }
 }
