@@ -26,7 +26,7 @@ export class SkinSelect extends Phaser.Scene {
     });
     
     if (Number(localStorage.getItem('level')) > 2) {
-      let skin2 = this.add.text(350, 300, 'Tomato', font);
+      let skin2 = this.add.text(350, 250, 'Tomato', font);
       skin2.setInteractive();
       skin2.on('pointerup', function() {
         this.skin = 'assets/tomatoSkin.png';
@@ -35,10 +35,19 @@ export class SkinSelect extends Phaser.Scene {
     }
     
     if (Number(localStorage.getItem('level') > 5)) {
-      let skin3 = this.add.text(350, 450, 'Zombie', font);
+      let skin3 = this.add.text(350, 350, 'Zombie', font);
       skin3.setInteractive();
       skin3.on('pointerup', function() {
-        this.skin = 'assets/zombieSkin.png'
+        this.skin = 'assets/zombieSkin.png';
+        localStorage.setItem('skin', this.skin);
+      });
+    }
+    
+    if (Number(localStorage.getItem('level') > 8)) {
+      let skin4 = this.add.text(350, 450, 'Reaper', font);
+      skin4.setInteractive();
+      skin4.on('pointerup', function() {
+        this.skin = 'assets/reaperSkin.png';
         localStorage.setItem('skin', this.skin);
       });
     }
