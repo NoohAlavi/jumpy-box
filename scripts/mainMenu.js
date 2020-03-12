@@ -11,6 +11,7 @@ export default class MainMenu extends Phaser.Scene {
       skin = 'assets/player.png';
     }
     this.load.image('icon', skin);
+    document.getElementById("favicon").href = skin;
   }
   
   create() {
