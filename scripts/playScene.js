@@ -147,7 +147,7 @@ export default class PlayScene extends Phaser.Scene {
       spikes[i].body.immovable = true;
       spikes[i].body.setVelocityX(-speed);
       spikes[i].setDebugBodyColor(0xFF0000);
-      spikes[i].setSize(20, 32);
+      spikes[i].setSize(8, 20);
     }
     
     let portals = gameState.portals.children.entries;
