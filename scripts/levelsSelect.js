@@ -123,6 +123,14 @@ export default class LevelSelect extends Phaser.Scene {
           level = 10;
         }, null, this);
     }
+    
+    if (savedLevel > 9) {
+      this.level11 = this.add.text(196, 80, '[11]', buttonFont);
+        this.level11.setInteractive();
+        this.level11.on('pointerup', function() {
+          level = 11;
+        }, null, this);
+    }
   }
   
   update() {
