@@ -6,7 +6,11 @@ export default class MainMenu extends Phaser.Scene {
   }
   
   preload() {
-    this.load.image('icon', 'assets/player.png');
+    let skin = localStorage.getItem('skin');
+    if (skin === null) {
+      skin = 'assets/player.png';
+    }
+    this.load.image('icon', skin);
   }
   
   create() {
