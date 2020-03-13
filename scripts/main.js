@@ -3,7 +3,8 @@ import WinScene from './winScene.js';
 import MainMenu from './mainMenu.js';
 import LevelSelect from './levelsSelect.js';
 import WorkInProgress from './wip.js';
-import {SkinSelect} from './skins.js'
+import CreditsScene from './credits.js';
+import {SkinSelect} from './skins.js';
 
 let config = {
   type: Phaser.AUTO,
@@ -17,6 +18,7 @@ let config = {
     PlayScene,
     WinScene,
     SkinSelect,
+    CreditsScene,
     WorkInProgress
   ],
   physics: {
