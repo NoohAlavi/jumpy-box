@@ -16,6 +16,8 @@ export default class MainMenu extends Phaser.Scene {
   
   create() {
     
+    this.input.mouse.disableContextMenu();
+    
     let font = {
       fontSize: 24,
       color: "#000000"
@@ -59,10 +61,17 @@ export default class MainMenu extends Phaser.Scene {
     this.resetButton.on('pointerup', function() {
       if (window.confirm('Are you sure you want to clear all your game data? This will make your levels and skins reset and cannot be undone.')) {
         localStorage.clear();
+        location.reload();
       }
     }, null, this);
     
-    this.quitButton = this.add.text(375, 450, 'QUIT', font);
+    this.creditsButton = this.add.text(360, 450, 'CREDITS', font);
+    this.creditsButton.setInteractive();
+    this.creditsButton.on('pointerup', function() {
+      this.scene.scene.start('CreditsScene');
+    }, null, this);
+    
+    this.quitButton = this.add.text(375, 500, 'QUIT', font);
     this.quitButton.setInteractive();
     this.quitButton.on('pointerup', function() {
       if (window.confirm("Are you sure you want to quit?")) {
