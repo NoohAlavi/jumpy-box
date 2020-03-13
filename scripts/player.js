@@ -15,7 +15,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
     this.setBounce(0.2);
   }
   update() {
-    if (this.y > 600 || this.x < 16) {
+    if (this.y > 600 || this.x < 16 || this.y < -300) {
       return 'isDead';
     }
     
@@ -29,6 +29,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
   }
   jump() {
     if (!this.jumped) {
+      this.scene.sound.play('jump');
       this.setVelocityY(- this.jumpForce);
       this.jumped = true;
     }
