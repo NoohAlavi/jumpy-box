@@ -175,7 +175,7 @@ export default class PlayScene extends Phaser.Scene {
         time = 0;
         if (this.level > localStorage.getItem('level')) {
           localStorage.setItem('level', this.level);
-          if (this.level == 3 || this.level == 6 || this.level == 9) {
+          if (this.level == 3 || this.level == 6 || this.level == 9 || this.level == 11) {
             alert('New skin unlocked! Check in skins menu to try it!');
           }
         }
