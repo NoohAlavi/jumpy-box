@@ -27,9 +27,13 @@ export default class PlayScene extends Phaser.Scene {
     this.load.image('portal', 'assets/portal.png');
     this.load.image('spike', 'assets/spike.png');
     this.load.image('trampoline', 'assets/trampoline.png');
+    this.load.audio('jump', 'assets/sounds/jump.wav');
   }
   
   create() {
+    
+    this.input.mouse.disableContextMenu();
+    gameState.jumpSound = this.sound.add('jump');
     
     gameState.cursors = this.input.keyboard.createCursorKeys();
     this.timer();
