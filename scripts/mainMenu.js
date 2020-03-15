@@ -12,11 +12,18 @@ export default class MainMenu extends Phaser.Scene {
     }
     this.load.image('icon', skin);
     document.getElementById("favicon").href = skin;
+    
+    this.load.audio('music', 'assets/sounds/music.mp3');
   }
   
   create() {
     
     this.input.mouse.disableContextMenu();
+    
+    let music = this.sound.add('music');
+    this.sound.play('music', {
+      loop: true
+    });
     
     let font = {
       fontSize: 24,
