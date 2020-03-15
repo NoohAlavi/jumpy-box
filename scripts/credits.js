@@ -14,9 +14,13 @@ export default class CreditsScene extends Phaser.Scene {
       this.scene.scene.start('MainMenu');
     });
     
-    this.add.text(300, 100, 'Programmed by Nooh Alavi', font);
-    this.add.text(300, 150, 'Artwork by Nooh Alavi', font);
-    this.add.text(300, 200, 'Additional Art by Hamza Hussein', font);
-    this.add.text(300, 250, 'Sounds by Yahya Patel', font);
+    this.add.text(200, 50, 'Programmed by Nooh Alavi', font);
+    this.add.text(200, 100, 'Designed by Nooh Alavi', font);
+    this.add.text(200, 150, 'Artwork by Nooh Alavi', font);
+    this.add.text(200, 200, 'Additional Art by Hamza Hoosain', font);
+    this.add.text(200, 250, 'Music by Rimaz Farook', font);
+    this.add.text(200, 300, 'Sounds by Yahya Patel', font);
+    this.add.text(200, 350, 'Levels Designed by Nooh Alavi, Brett Lawrence, \n Hamza Hoosain, Rimaz Farook', font);
+    this.add.text(200, 400, 'Tested by Tejas Sodhi, Abdur-Raheem Mohamed', font);
   }
 }
